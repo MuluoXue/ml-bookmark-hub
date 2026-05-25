@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bookmark Hub</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <header>
+      <div class="header-left">
+        <h1>🔖 ML Bookmark Hub</h1>
+      </div>
+      <div class="header-actions">
+        <button class="btn btn-primary" id="addBookmarkBtn">+ 新建书签</button>
+        <div class="dropdown">
+          <button class="btn btn-secondary" id="moreBtn">更多 ▾</button>
+          <div class="dropdown-menu" id="dropdownMenu">
+            <button id="addGroupBtn">新建分组</button>
+            <div class="dropdown-divider"></div>
+            <button id="importBtn">📥 导入 JSON</button>
+            <button id="exportBtn">📤 导出 JSON</button>
+            <div class="dropdown-divider"></div>
+            <button id="resetBtn" class="danger">🗑 清空所有数据</button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="search-bar">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="搜索书签名称..." autocomplete="off">
+      <button class="btn-clear" id="clearSearchBtn">✕</button>
+    </div>
+    <main>
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <span>分组列表</span>
+          <button id="addGroupBtnSide" title="新建分组">+</button>
+        </div>
+        <div class="group-list" id="groupList"></div>
+      </aside>
+      <section class="content">
+        <div class="content-header" id="contentHeader">
+          <span class="group-title" id="groupTitle">全部书签</span>
+          <span class="bookmark-count" id="bookmarkCount">0 个书签</span>
+        </div>
+        <div class="bookmark-grid" id="bookmarkGrid"></div>
+        <div class="empty-state" id="emptyState">
+          <div class="empty-icon">📂</div>
+          <p class="empty-title">还没有书签</p>
+          <p class="empty-desc">点击上方「新建书签」开始添加</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- 书签弹窗 -->
+  <div class="modal-overlay" id="bookmarkModalOverlay">
+    <div class="modal" id="bookmarkModal">
+      <div class="modal-header">
+        <h2 id="bookmarkModalTitle">新建书签</h2>
+        <button class="modal-close" id="bookmarkModalClose">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="bookmarkName">书签名称 *</label>
+          <input type="text" id="bookmarkName" placeholder="例如：GitHub">
+        </div>
+        <div class="form-group">
+          <label for="bookmarkUrl">链接地址 *</label>
+          <input type="url" id="bookmarkUrl" placeholder="例如：https://github.com">
+        </div>
+        <div class="form-group">
+          <label for="bookmarkGroup">所属分组</label>
+          <select id="bookmarkGroup"></select>
+        </div>
+        <div class="form-group">
+          <label for="bookmarkNotes">备注</label>
+          <textarea id="bookmarkNotes" rows="3" placeholder="添加备注..."></textarea>
+        </div>
+        <div class="form-group">
+          <label for="bookmarkTags">标签</label>
+          <input type="text" id="bookmarkTags" placeholder="多个标签用逗号分隔，例如：前端, 工具, 阅读">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="bookmarkModalCancel">取消</button>
+        <button class="btn btn-primary" id="bookmarkModalConfirm">保存</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 分组弹窗 -->
+  <div class="modal-overlay" id="groupModalOverlay">
+    <div class="modal modal-sm" id="groupModal">
+      <div class="modal-header">
+        <h2 id="groupModalTitle">新建分组</h2>
+        <button class="modal-close" id="groupModalClose">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="groupName">分组名称 *</label>
+          <input type="text" id="groupName" placeholder="例如：开发工具">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="groupModalCancel">取消</button>
+        <button class="btn btn-primary" id="groupModalConfirm">保存</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 导入弹窗 -->
+  <div class="modal-overlay" id="importModalOverlay">
+    <div class="modal modal-sm" id="importModal">
+      <div class="modal-header">
+        <h2>导入书签</h2>
+        <button class="modal-close" id="importModalClose">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="margin-bottom: 12px; color: #64748b;">选择 JSON 文件导入书签数据（将追加到现有数据）</p>
+        <input type="file" id="importFileInput" accept=".json">
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="importModalCancel">取消</button>
+        <button class="btn btn-primary" id="importModalConfirm">导入</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "ML Bookmark Hub",
+  "version": "1.0.0",
+  "description": "个人书签主页 - 管理你的所有书签",
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "permissions": ["storage"],
+  "icons": {
+    "16": "icons/icon.svg",
+    "48": "icons/icon.svg",
+    "128": "icons/icon.svg"
+  }
+}
