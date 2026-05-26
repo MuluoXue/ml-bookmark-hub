@@ -449,7 +449,7 @@ function buildExportPayload() {
   };
 }
 
-function exportData(filenamePrefix = 'bookmark-hub') {
+function exportData(filenamePrefix = 'ml bookmark-hub') {
   const json = JSON.stringify(buildExportPayload(), null, 2);
   const blob = new Blob([json], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
@@ -474,7 +474,7 @@ function importData(file) {
         return;
       }
 
-      exportData('bookmark-hub-before-import');
+      exportData('ml bookmark-hub-before-import');
 
       const stats = mergeImportedData(imported);
       const skipped = stats.skippedBookmarks + stats.skippedGroups;
