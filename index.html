@@ -27,9 +27,12 @@
         </div>
       </div>
     </header>
+    <div class="local-notice">
+      数据仅保存在当前浏览器本地；卸载扩展、清理浏览器数据或重装系统前，请先导出 JSON 备份。
+    </div>
     <div class="search-bar">
       <span class="search-icon">🔍</span>
-      <input type="text" id="searchInput" placeholder="搜索书签名称..." autocomplete="off">
+      <input type="text" id="searchInput" placeholder="搜索名称、链接、备注或标签..." autocomplete="off">
       <button class="btn-clear" id="clearSearchBtn">✕</button>
     </div>
     <main>
@@ -119,7 +122,7 @@
         <button class="modal-close" id="importModalClose">✕</button>
       </div>
       <div class="modal-body">
-        <p style="margin-bottom: 12px; color: #64748b;">选择 JSON 文件导入书签数据（将追加到现有数据）</p>
+        <p class="import-help">选择 JSON 文件合并导入。导入前会自动备份当前数据，并自动跳过重复链接。</p>
         <input type="file" id="importFileInput" accept=".json">
       </div>
       <div class="modal-footer">
