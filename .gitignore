@@ -1,0 +1,11 @@
+# IDE and local project files
+.idea/
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Local environment files
+.env
+.env.*
+!.env.example
